@@ -266,7 +266,7 @@ function Footer() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <ScrollToTop />
       <Navbar />
       <div style={{ minHeight: 'calc(100vh - 200px)' }}>
@@ -287,7 +287,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-    </BrowserRouter>
+    </Router>
   );
 }
 
