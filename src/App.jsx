@@ -17,6 +17,26 @@ import PartnerStory from './pages/PartnerStory';
 import Media from './pages/Media';
 import Contact from './pages/Contact';
 import Leadership from './pages/Leadership';
+import Charter from './pages/Charter';
+import Vision from './pages/Vision';
+import GlobalLandscape from './pages/GlobalLandscape';
+import OpportunityCartography from './pages/OpportunityCartography';
+import MissionSeries from './pages/MissionSeries';
+import ProgramTracks from './pages/ProgramTracks';
+import TalentPathways from './pages/TalentPathways';
+import UpcomingCohorts from './pages/UpcomingCohorts';
+import MarketEntry from './pages/MarketEntry';
+import ExportGateways from './pages/ExportGateways';
+import AllianceFrameworks from './pages/AllianceFrameworks';
+import DelegationPathways from './pages/DelegationPathways';
+import ExpansionStrategy from './pages/ExpansionStrategy';
+import Branding from './pages/Branding';
+import Partnerships from './pages/Partnerships';
+import CaseStudies from './pages/CaseStudies';
+import ApplyPage from './pages/ApplyPage';
+import JoinMissions from './pages/JoinMissions';
+import PartnersPage from './pages/PartnersPage';
+import ConnectPage from './pages/ConnectPage';
 
 // World Map Navbar Background — CSS + SVG approach (reliable)
 function NavWorldMap() {
@@ -29,6 +49,10 @@ function NavWorldMap() {
     { name: 'London',    left: '49.9%', top: '21.4%', gold: false },
     { name: 'Tokyo',     left: '88.8%', top: '30.2%', gold: false },
     { name: 'New York',  left: '29.4%', top: '27.4%', gold: false },
+    { name: 'Taiwan',    left: '83.6%', top: '36.9%', gold: true  },
+    { name: 'Africa',    left: '60.2%', top: '50.7%', gold: true  },
+    { name: 'UAE',       left: '65.1%', top: '35.4%', gold: true  },
+    { name: 'Japan',     left: '87.5%', top: '29.2%', gold: true  },
   ];
 
   return (
@@ -131,58 +155,60 @@ function Navbar() {
           ☰
         </button>
         <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
+          <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+
           <div className="nav-dropdown">
-            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>1. Atlas ▾</span>
+            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>Discover ▾</span>
             <div className="nav-dropdown-menu">
               <div className="nav-dropdown-header">Foundation & Global Perspective</div>
-              <Link to="/" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>The E2E Charter</Link>
-              <Link to="/about" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Vision & Mandate</Link>
-              <Link to="/about" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Global Landscape</Link>
-              <Link to="/about" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Opportunity Cartography</Link>
+              <Link to="/charter" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>The E2E Charter</Link>
+              <Link to="/vision" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Vision & Mandate</Link>
+              <Link to="/global-landscape" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Global Landscape</Link>
+              <Link to="/opportunity-cartography" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Opportunity Cartography</Link>
             </div>
           </div>
 
           <div className="nav-dropdown">
-            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>2. Nexus ▾</span>
+            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>Programs ▾</span>
             <div className="nav-dropdown-menu">
               <div className="nav-dropdown-header">Where journeys begin</div>
-              <Link to="/program" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Mission Series</Link>
-              <Link to="/program" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Program Tracks</Link>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Talent Pathways</Link>
-              <Link to="/program" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Upcoming Cohorts</Link>
+              <Link to="/mission-series" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Mission Series</Link>
+              <Link to="/program-tracks" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Program Tracks</Link>
+              <Link to="/talent-pathways" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Talent Pathways</Link>
+              <Link to="/upcoming-cohorts" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Upcoming Cohorts</Link>
             </div>
           </div>
 
           <div className="nav-dropdown">
-            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>3. Passage ▾</span>
+            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>Pathways ▾</span>
             <div className="nav-dropdown-menu">
               <div className="nav-dropdown-header">Entering global markets</div>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Market Entry Corridors</Link>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Export Gateways</Link>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Alliance Frameworks</Link>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Delegation Pathways</Link>
+              <Link to="/market-entry" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Market Entry Corridors</Link>
+              <Link to="/export-gateways" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Export Gateways</Link>
+              <Link to="/alliance-frameworks" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Alliance Frameworks</Link>
+              <Link to="/delegation-pathways" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Delegation Pathways</Link>
             </div>
           </div>
 
           <div className="nav-dropdown">
-            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>4. Vanguard ▾</span>
+            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>Insights ▾</span>
             <div className="nav-dropdown-menu">
               <div className="nav-dropdown-header">Leadership & growth</div>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Expansion Strategy</Link>
-              <Link to="/services" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Branding</Link>
-              <Link to="/success-stories" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Partnerships</Link>
-              <Link to="/success-stories" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
+              <Link to="/expansion-strategy" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Expansion Strategy</Link>
+              <Link to="/branding" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Branding</Link>
+              <Link to="/partnerships" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Partnerships</Link>
+              <Link to="/case-studies" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
             </div>
           </div>
 
           <div className="nav-dropdown">
-            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>5. Converge ▾</span>
+            <span className="nav-dropdown-toggle" style={{ color: 'var(--text-dark)', fontWeight: 600 }}>Engage ▾</span>
             <div className="nav-dropdown-menu">
               <div className="nav-dropdown-header">Action & collaboration</div>
-              <Link to="/pricing" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Apply</Link>
-              <Link to="/program" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Join Missions</Link>
-              <Link to="/contact" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Partner</Link>
-              <Link to="/contact" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Connect</Link>
+              <Link to="/apply" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Apply</Link>
+              <Link to="/join-missions" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Join Missions</Link>
+              <Link to="/partner" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Partner</Link>
+              <Link to="/connect" className="nav-dropdown-item" onClick={() => setMobileMenuOpen(false)}>Connect</Link>
             </div>
           </div>
 
@@ -284,6 +310,26 @@ function App() {
           <Route path="/media" element={<Media />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/leadership" element={<Leadership />} />
+          <Route path="/charter" element={<Charter />} />
+          <Route path="/vision" element={<Vision />} />
+          <Route path="/global-landscape" element={<GlobalLandscape />} />
+          <Route path="/opportunity-cartography" element={<OpportunityCartography />} />
+          <Route path="/mission-series" element={<MissionSeries />} />
+          <Route path="/program-tracks" element={<ProgramTracks />} />
+          <Route path="/talent-pathways" element={<TalentPathways />} />
+          <Route path="/upcoming-cohorts" element={<UpcomingCohorts />} />
+          <Route path="/market-entry" element={<MarketEntry />} />
+          <Route path="/export-gateways" element={<ExportGateways />} />
+          <Route path="/alliance-frameworks" element={<AllianceFrameworks />} />
+          <Route path="/delegation-pathways" element={<DelegationPathways />} />
+          <Route path="/expansion-strategy" element={<ExpansionStrategy />} />
+          <Route path="/branding" element={<Branding />} />
+          <Route path="/partnerships" element={<Partnerships />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/apply" element={<ApplyPage />} />
+          <Route path="/join-missions" element={<JoinMissions />} />
+          <Route path="/partner" element={<PartnersPage />} />
+          <Route path="/connect" element={<ConnectPage />} />
         </Routes>
       </div>
       <Footer />

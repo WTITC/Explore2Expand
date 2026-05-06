@@ -152,9 +152,9 @@ export default function ProgramDetails() {
               <div style={{ marginTop: '2rem', padding: '1rem 1.25rem', background: 'var(--bg-alt)', borderRadius: '0.75rem', fontSize: '0.95rem', color: 'var(--text-muted)', borderLeft: '3px solid var(--accent)' }}>
                 <strong style={{ color: 'var(--primary)' }}>Ideal for:</strong> Self-driven, motivated, outgoing individuals.
               </div>
-              <Link to="/pricing" className="btn btn-gold btn-lg" style={{ marginTop: '2rem' }}>
+              <a href="https://bit.ly/explore2expand" target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg" style={{ marginTop: '2rem' }}>
                 Apply Now <ArrowUpRight size={18} />
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

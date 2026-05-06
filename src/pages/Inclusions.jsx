@@ -100,7 +100,7 @@ export default function Inclusions() {
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
             <Link to="/segments" className="btn btn-outline btn-lg" style={{ marginRight: '1rem' }}>Who Is This For?</Link>
-            <Link to="/pricing" className="btn btn-gold btn-lg">Book Access Pass <ArrowUpRight size={18} /></Link>
+            <a href="https://bit.ly/explore2expand" target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg">Book Access Pass <ArrowUpRight size={18} /></a>
           </motion.div>
         </div>
       </section>

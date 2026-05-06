@@ -132,9 +132,9 @@ export default function Segments() {
                     <p style={{ fontSize: '0.98rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{b.desc}</p>
                   </div>
                 ))}
-                <Link to="/pricing" className="btn btn-gold btn-lg" style={{ marginTop: '2rem' }}>
+                <a href="https://bit.ly/explore2expand" target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg" style={{ marginTop: '2rem' }}>
                   {seg.note ? 'Apply Now' : 'Book Access Pass'} <ArrowUpRight size={18} />
-                </Link>
+                </a>
               </div>
             </div>
           </div>

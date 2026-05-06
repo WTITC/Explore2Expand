@@ -20,8 +20,8 @@ export default function Home() {
             {/* Auto-cycling Banner Carousel */}
             {(() => {
               const banners = [
-                { src: '/assets/banner1.png', href: 'https://bit.ly/explore2expand', clickable: true },
-                { src: '/assets/banner2.png', href: null, clickable: false },
+                { src: '/assets/banner1.png', mobileSrc: '/assets/banner1-mobile.png', href: 'https://bit.ly/explore2expand', clickable: true },
+                { src: '/assets/banner2.png', mobileSrc: '/assets/banner2-mobile.png', href: null, clickable: false },
               ];
               const [active, setActive] = React.useState(0);
               React.useEffect(() => {
@@ -33,10 +33,16 @@ export default function Home() {
                   {banners.map((b, i) => (
                     b.clickable
                       ? <a key={i} href={b.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', position: i === 0 ? 'relative' : 'absolute', inset: 0, opacity: active === i ? 1 : 0, transition: 'opacity 0.8s ease', zIndex: active === i ? 2 : 1 }}>
-                          <img src={b.src} alt={`Banner ${i+1}`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                          <picture>
+                            <source media="(max-width: 768px)" srcSet={b.mobileSrc} />
+                            <img src={b.src} alt={`Banner ${i+1}`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                          </picture>
                         </a>
                       : <div key={i} style={{ display: 'block', position: i === 0 ? 'relative' : 'absolute', inset: 0, opacity: active === i ? 1 : 0, transition: 'opacity 0.8s ease', zIndex: active === i ? 2 : 1 }}>
-                          <img src={b.src} alt={`Banner ${i+1}`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                          <picture>
+                            <source media="(max-width: 768px)" srcSet={b.mobileSrc} />
+                            <img src={b.src} alt={`Banner ${i+1}`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                          </picture>
                         </div>
                   ))}
                   {/* Dot indicators */}
@@ -50,9 +56,9 @@ export default function Home() {
             })()}
 
             <motion.div className="hero-ctas" variants={fadeIn} style={{ justifyContent: 'center' }}>
-              <Link to="/pricing" className="btn btn-gold btn-lg">
+              <a href="https://bit.ly/explore2expand" target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg">
                 Book Access Pass <ArrowUpRight size={20} />
-              </Link>
+              </a>
               <Link to="/program" className="btn btn-outline btn-lg">
                 See the Program
               </Link>
@@ -217,9 +223,9 @@ export default function Home() {
             <h2 className="heading-xl" style={{ marginBottom: '1rem', letterSpacing: '-0.03em', color: 'white' }}>Unlock Global Growth & Opportunity</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.2rem', marginBottom: '3rem' }}>Expand your business on a global stage. 21–24 May 2026, Singapore.</p>
             <div className="cta-action-group" style={{ marginTop: '1rem' }}>
-              <Link to="/pricing" className="btn btn-gold btn-lg">
+              <a href="https://bit.ly/explore2expand" target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg">
                 Book Access Pass <ArrowUpRight size={20} />
-              </Link>
+              </a>
               <a href="tel:+918019577575" className="contact-link" style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginTop: '1.25rem' }}>
                 <Phone size={22} className="accent-color" /> <strong>+91 80195 75775</strong>
               </a>

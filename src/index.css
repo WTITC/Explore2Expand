@@ -971,3 +971,67 @@ a, button, .bento-card, .segment-card, .btn {
   70%  { transform: translate(-50%, -50%) scale(2.5); opacity: 0.2; }
   100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
 }
+
+/* ============================================================
+   ESSENTIAL MOBILE RESPONSIVENESS (Safe Mode)
+   This ensures the site doesn't break on phones while completely
+   preserving the original desktop design structure.
+   ============================================================ */
+   
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  /* Prevent huge padding from squishing mobile content */
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* Collapse all major grids into a single column for phones */
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  .bento-large, .bento-wide {
+    grid-column: span 1 !important;
+  }
+  
+  .segments-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .pricing-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem;
+  }
+  
+  /* Scale down massive hero text just enough to fit the screen */
+  .heading-xl {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+  .heading-lg {
+    font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+  }
+  
+  /* Ensure inline padding values don't push content offscreen */
+  [style*="paddingTop: '100px'"] { padding-top: 80px !important; }
+  [style*="paddingTop: '90px'"] { padding-top: 75px !important; }
+  [style*="paddingBottom: '4rem'"] { padding-bottom: 2rem !important; }
+}
+
+@media (max-width: 480px) {
+  .bento-card, .segment-card, .pricing-card {
+    padding: 1.5rem !important;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
