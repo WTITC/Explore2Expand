@@ -1,13 +1,117 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Users, Ship, Building, Award, Plane, Phone, ArrowUpRight, Globe, Target, TrendingUp, Handshake, Quote } from 'lucide-react';
 import { partners } from '../data/partners';
 
 const fadeIn = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } };
 
+// ── Standalone video player component (hooks must live in a real component) ──
+function VideoPlayer() {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setIsPlaying(true); }
+    else          { v.pause(); setIsPlaying(false); }
+  };
+
+  return (
+    <div
+      onClick={togglePlay}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        position: 'relative', flexShrink: 0, cursor: 'pointer',
+        width: 'min(340px, 90vw)', aspectRatio: '9/16', maxHeight: '70vh',
+        borderRadius: '1.5rem', overflow: 'hidden',
+        boxShadow: '0 30px 70px rgba(0,0,0,0.55)',
+        border: '2px solid rgba(226,180,79,0.3)',
+        background: '#000',
+      }}
+    >
+      <video
+        ref={videoRef}
+        src="/assets/cepa-video.mp4"
+        loop playsInline
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
+
+      {/* Bottom gradient */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to top, rgba(6,14,36,0.75) 0%, transparent 55%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Play / Pause button — visible when hovered or paused */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        opacity: (isHovered || !isPlaying) ? 1 : 0,
+        transition: 'opacity 0.3s ease',
+        pointerEvents: 'none',
+      }}>
+        <div style={{
+          width: '64px', height: '64px',
+          background: 'rgba(226,180,79,0.92)', borderRadius: '50%',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 8px 30px rgba(226,180,79,0.5)',
+          transform: isHovered ? 'scale(1.12)' : 'scale(1)',
+          transition: 'transform 0.25s ease',
+        }}>
+          {isPlaying
+            ? <svg width="22" height="22" viewBox="0 0 24 24" fill="#060e24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            : <svg width="22" height="22" viewBox="0 0 24 24" fill="#060e24"><polygon points="5,3 19,12 5,21"/></svg>
+          }
+        </div>
+      </div>
+
+      {/* Instagram badge — ONLY this opens Instagram */}
+      <a
+        href="https://www.instagram.com/reel/DXWUYAkEzRU/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+        target="_blank" rel="noopener noreferrer"
+        onClick={e => e.stopPropagation()}
+        style={{
+          position: 'absolute', bottom: '1rem', left: '50%', transform: 'translateX(-50%)',
+          background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255,255,255,0.2)', color: 'white',
+          padding: '0.4rem 1rem', borderRadius: '999px',
+          fontSize: '0.8rem', fontWeight: 600, whiteSpace: 'nowrap',
+          display: 'flex', alignItems: 'center', gap: '0.4rem',
+          textDecoration: 'none', zIndex: 10, transition: 'background 0.25s ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,180,79,0.3)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.65)'; }}
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+        View on Instagram
+      </a>
+    </div>
+  );
+}
+
 export default function Home() {
+  const navigate = useNavigate();
+
+  const galleryImages = [
+    '/assets/gallery1.jpeg',
+    '/assets/gallery2.jpeg',
+    '/assets/gallery3.jpeg',
+    '/assets/gallery4.jpeg',
+    '/assets/gallery5.jpeg',
+    '/assets/gallery6.jpeg',
+    '/assets/gallery7.jpeg',
+    '/assets/moment4.jpg',
+    '/assets/moment5.jpg',
+    '/assets/moment6.jpg',
+  ];
 
   return (
     <div style={{ paddingTop: '80px' }}>
@@ -133,12 +237,115 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── International Collaboration Video Section ── */}
+      <section style={{ padding: '5rem 0', background: 'linear-gradient(135deg, #060e24 0%, #0d1b3e 100%)', overflow: 'hidden' }}>
+        <div className="container">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+            style={{ textAlign: 'center', marginBottom: '3rem' }}
+          >
+            <span style={{
+              display: 'inline-block',
+              background: 'rgba(226,180,79,0.15)',
+              color: '#E2B44F',
+              border: '1px solid rgba(226,180,79,0.35)',
+              borderRadius: '999px',
+              padding: '0.4rem 1.2rem',
+              fontSize: '0.85rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              marginBottom: '1rem',
+            }}>Featured</span>
+            <h2 className="heading-lg" style={{ color: '#fff' }}>
+              International <span className="gold-gradient-text">Collaboration</span>
+            </h2>
+            <p style={{ marginTop: '0.75rem', color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', maxWidth: '560px', margin: '0.75rem auto 0' }}>
+              Watch how Explore2Expand is bridging borders and building global partnerships.
+            </p>
+          </motion.div>
+
+          {/* Two-column: video + CTA text */}
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              gap: '3rem',
+              justifyContent: 'center',
+            }}
+          >
+            {/* ── Interactive Video Player ── */}
+            <VideoPlayer />
+
+
+            {/* CTA text panel */}
+            <div style={{ maxWidth: '380px', color: '#fff', textAlign: 'left' }}>
+              <div style={{
+                width: '50px', height: '4px',
+                background: 'linear-gradient(90deg, #E2B44F, #D4AF37)',
+                borderRadius: '2px', marginBottom: '1.5rem',
+              }} />
+              <h3 style={{ fontFamily: 'Outfit', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.3, color: '#ffffff' }}>
+                CEPA &amp; Global<br/>Partnership Video
+              </h3>
+              <p style={{ color: 'rgba(255,255,255,0.65)', lineHeight: 1.8, fontSize: '1rem', marginBottom: '2rem' }}>
+                Featuring <strong style={{ color: '#E2B44F' }}>Sundeep Kumar Makthala</strong> — see how E2E is driving CEPA-powered international trade and global business collaborations.
+              </p>
+
+              {/* Click prompt */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                background: 'rgba(226,180,79,0.12)',
+                border: '1px dashed rgba(226,180,79,0.45)',
+                borderRadius: '1rem',
+                padding: '1rem 1.5rem',
+                marginBottom: '1.75rem',
+              }}>
+                <span style={{ fontSize: '1.5rem' }}>👆</span>
+                <div>
+                <p style={{ color: '#E2B44F', fontWeight: 700, fontSize: '0.95rem', margin: 0 }}>Click the video to play / pause</p>
+                  <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.82rem', margin: 0 }}>tap the Instagram badge to open the reel</p>
+                </div>
+              </div>
+
+              <a
+                href="https://www.instagram.com/reel/DXWUYAkEzRU/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+                  background: 'linear-gradient(135deg, #E2B44F, #D4AF37)',
+                  color: '#060e24',
+                  padding: '0.85rem 2rem',
+                  borderRadius: '999px',
+                  fontWeight: 800,
+                  fontSize: '0.95rem',
+                  textDecoration: 'none',
+                  boxShadow: '0 10px 30px rgba(226,180,79,0.35)',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-3px)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                Watch Full Reel
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Infinite Scrolling Photo Gallery */}
       <section style={{ padding: '3rem 0', background: 'var(--white)', overflow: 'hidden' }}>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h2 className="heading-lg">Moments That <span className="gold-gradient-text">Matter</span></h2>
           <p className="text-muted" style={{ marginTop: '0.5rem' }}>Snapshots from our journey of global connections.</p>
         </motion.div>
+
 
         <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
           {/* Fade edges */}
@@ -149,20 +356,19 @@ export default function Home() {
           <div className="gallery-track">
             {[...Array(2)].map((_, setIdx) => (
               <div key={setIdx} className="gallery-set">
-                {[
-                  '/assets/gallery1.jpeg',
-                  '/assets/gallery2.jpeg',
-                  '/assets/gallery3.jpeg',
-                  '/assets/gallery4.jpeg',
-                  '/assets/gallery5.jpeg',
-                  '/assets/gallery6.jpeg',
-                  '/assets/gallery7.jpeg',
-                ].map((src, i) => (
-                  <div key={`${setIdx}-${i}`} className="gallery-item">
+                {galleryImages.map((src, i) => (
+                  <div
+                    key={`${setIdx}-${i}`}
+                    className="gallery-item"
+                    onClick={() => navigate(`/photo/${i}`)}
+                    style={{ cursor: 'pointer' }}
+                  >
                     <img
                       src={src}
                       alt={`Event moment ${i + 1}`}
-                      style={{ width: '300px', height: '200px', objectFit: 'cover', borderRadius: '1rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', flexShrink: 0, display: 'block' }}
+                      style={{ width: '300px', height: '200px', objectFit: 'cover', borderRadius: '1rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', flexShrink: 0, display: 'block', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+                      onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(226,180,79,0.3)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)'; }}
                     />
                   </div>
                 ))}

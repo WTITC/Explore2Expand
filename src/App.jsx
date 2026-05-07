@@ -37,6 +37,7 @@ import ApplyPage from './pages/ApplyPage';
 import JoinMissions from './pages/JoinMissions';
 import PartnersPage from './pages/PartnersPage';
 import ConnectPage from './pages/ConnectPage';
+import PhotoViewer from './pages/PhotoViewer';
 
 // World Map Navbar Background — CSS + SVG approach (reliable)
 function NavWorldMap() {
@@ -294,6 +295,17 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <AppLayout />
+    </Router>
+  );
+}
+
+function AppLayout() {
+  const location = useLocation();
+  const isPhotoViewer = location.pathname.startsWith('/photo/');
+
+  return (
+    <>
       <Navbar />
       <div style={{ minHeight: 'calc(100vh - 200px)' }}>
         <Routes>
@@ -330,10 +342,11 @@ function App() {
           <Route path="/join-missions" element={<JoinMissions />} />
           <Route path="/partner" element={<PartnersPage />} />
           <Route path="/connect" element={<ConnectPage />} />
+          <Route path="/photo/:id" element={<PhotoViewer />} />
         </Routes>
       </div>
-      <Footer />
-    </Router>
+      {<Footer />}
+    </>
   );
 }
 
