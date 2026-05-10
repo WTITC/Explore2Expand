@@ -111,6 +111,9 @@ export default function Home() {
     '/assets/moment4.jpg',
     '/assets/moment5.jpg',
     '/assets/moment6.jpg',
+    '/assets/moment7.jpg',
+    '/assets/moment8.jpg',
+    '/assets/moment9.jpg',
   ];
 
   return (

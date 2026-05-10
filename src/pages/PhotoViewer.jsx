@@ -14,6 +14,9 @@ const allImages = [
   { src: '/assets/moment4.jpg',   caption: 'E2E Global Mission — Field Visit' },
   { src: '/assets/moment5.jpg',   caption: 'E2E Global Mission — Team Highlight' },
   { src: '/assets/moment6.jpg',   caption: 'E2E Global Mission — Community Moment' },
+  { src: '/assets/moment7.jpg',   caption: 'E2E Global Mission — Special Moment' },
+  { src: '/assets/moment8.jpg',   caption: 'E2E Global Mission — Global Connect' },
+  { src: '/assets/moment9.jpg',   caption: 'E2E Global Mission — Together We Grow' },
 ];
 
 export default function PhotoViewer() {
