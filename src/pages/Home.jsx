@@ -424,6 +424,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Brands Tied Up With E2E */}
+      <section className="section-padding" style={{ background: 'var(--white)' }}>
+        <div className="container">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 className="heading-xl">Brands Tied Up With <span className="gold-gradient-text">E2E</span></h2>
+            <p className="subtitle" style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.2rem', color: 'var(--text-muted)' }}>Accelerating growth and innovation globally.</p>
+          </motion.div>
+
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ maxWidth: '900px', margin: '0 auto', background: 'var(--light)', borderRadius: '1.5rem', padding: '3rem', boxShadow: '0 15px 50px rgba(0,0,0,0.05)', border: '1px solid rgba(226,180,79,0.2)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <img src="/assets/draperu-logo.png" alt="DraperU India Logo" style={{ maxWidth: '320px', marginBottom: '1.5rem', objectFit: 'contain' }} />
+            <h4 style={{ fontWeight: 800, color: 'var(--primary)', marginBottom: '1.5rem', fontSize: '1.4rem', fontFamily: 'Outfit' }}>DraperU as a startup accelerator for E2E</h4>
+            
+            <p style={{ fontSize: '1.1rem', color: 'var(--text-dark)', lineHeight: 1.8, opacity: 0.9 }}>
+              DraperU India is a leading startup accelerator and entrepreneurial hub focused on empowering the next generation of innovators, founders, and changemakers. Through immersive programs such as our flagship program DFP (Draper Founders program) and access to mentorship, networking opportunities, and hands-on learning experiences, DraperU India helps aspiring entrepreneurs build bold ideas into impactful ventures. With a strong focus on innovation, collaboration, and global exposure, DraperU India creates an ecosystem where creativity meets execution.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section-padding bg-primary" style={{ textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="cta-grid-bg"></div>
